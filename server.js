@@ -43,7 +43,36 @@ app.get("/", function(req, res) {
   res.sendFile(__dirname + "/public/index.html");
 });
 
+app.post('/save', function(req, res){
+  var newArticle = new Article(req.body);
 
+  var title = req.body.title;
+  var date = req.body.date;
+  var url = req.body.url;
+
+  newArticle.save(function(err, doc){
+    if(err){
+      console.log(err);
+    } else {
+      res.send("Saved Article");;
+    }
+  });
+});
+
+
+app.get('/saved', function(req, res) {
+  Article.find({}).sort([
+    ["date", "descending"]
+    ]).then(function(err, data){
+       if (err) {
+      console.log(err);
+    }
+      else {
+      console.log("back end received data", data)
+      res.send(data);
+    }
+    });
+});
 
 // Listener
 app.listen(PORT, function() {

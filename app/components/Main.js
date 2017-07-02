@@ -4,6 +4,7 @@ var Search = require("./children/search");
 var axios = require("axios");
 
 var Main = React.createClass({
+
 	render: function(){
 		return (
 			<div className="container">
