@@ -4,8 +4,8 @@ var SavedArticles = React.createClass({
 
 
 	render: function(){
-    var saved = this.props.retrievedSavedArticles;
-    console.log(saved);
+    var saved = this.props.retrievedSaved;
+    console.log("saved", saved);
       // var markup = savedArticles.map(function(search, i) {
         // console.log(search.headline.main) //should give me the title of the article
         // console.log(search.web_url) // should give the URL of that array

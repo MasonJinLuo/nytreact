@@ -45,7 +45,6 @@ app.get("/", function(req, res) {
 
 app.post('/save', function(req, res){
   var newArticle = new Article(req.body);
-
   var title = req.body.title;
   var date = req.body.date;
   var url = req.body.url;
@@ -54,24 +53,24 @@ app.post('/save', function(req, res){
     if(err){
       console.log(err);
     } else {
-      res.send("Saved Article");;
+      res.send("Saved Article");
     }
   });
 });
 
 
 app.get('/saved', function(req, res) {
-  Article.find({}).sort([
-    ["date", "descending"]
-    ]).then(function(err, data){
-       if (err) {
-      console.log(err);
-    }
+  Article.find({})
+    .exec(function(err, doc){
+
+      if(err){
+        console.log(err);
+      }
       else {
-      console.log("back end received data", data)
-      res.send(data);
-    }
-    });
+        console.log("database data retrieved and sent", doc)
+        res.send(doc);
+      }
+    })
 });
 
 // Listener

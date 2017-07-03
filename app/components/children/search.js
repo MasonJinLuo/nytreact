@@ -8,7 +8,7 @@ var Search = React.createClass({
 	getInitialState: function() {
 		return {
 	      results: [],
-	      saved: []
+	      savedData: ""
 	    }
 	},
 
@@ -16,11 +16,11 @@ var Search = React.createClass({
 	console.log("okay this is happening")
     return axios.get('/saved')
       .then(function(results){
-      	console.log("front end received data", resulted)
+      	console.log("front end received data", results.data);
         this.setState({
-        	saved: results
-        }).bind(this)
-      })
+        	savedData: results.data
+        });
+      }.bind(this))
   	},
 
   	handleClick: function() {
@@ -48,7 +48,7 @@ var Search = React.createClass({
 	},
 
 	render: function() {
-		console.log("new" , this.state.results)
+		console.log("new" , this.state.savedData)
 		return(
 		<div>
 			<div className="row">
@@ -85,7 +85,7 @@ var Search = React.createClass({
 				<Results retrievedData={this.state.results}/>
 			</div>
 			<div className="row">
-				<SavedArticles retrievedData={this.state.saved}/>
+				<SavedArticles retrievedSaved={this.state.savedData}/>
 			</div>
 		</div>
 

@@ -8,7 +8,7 @@ var ArticleSchema = new Schema({
   date: {
     type: Date
   },
-  URL: {
+  url: {
   	type: String
   	}
 });
